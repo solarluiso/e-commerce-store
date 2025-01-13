@@ -149,4 +149,11 @@ export const refreshToken = async (req, res) => {
   }
 };
 
-// TODO: implement getProfile
+export const getProfile = async (req, res) => {
+  try {
+    res.json(req.user); // req.user is set in protectRoute middleware
+  } catch (error) {
+    console.log("Error in getProfile controller", error.message);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
