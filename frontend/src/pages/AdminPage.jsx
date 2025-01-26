@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BarChart, PlusCircle, ShoppingBasket } from "lucide-react";
+import { motion } from "framer-motion";
 
 import CreateProductForm from "../components/CreateProductForm";
 import ProductsList from "../components/ProductsList";
@@ -17,11 +18,21 @@ const AdminPage = () => {
   return (
     <div className="min-h-screen relative overflow-hidden">
       <div className="relative z-10 container mx-auto px-4 py-16">
-        <h1 className="text-4xl font-bold mb-8 text-emerald-400 text-center">
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-4xl font-bold mb-8 text-emerald-400 text-center"
+        >
           Admin Dashboard
-        </h1>
+        </motion.h1>
 
-        <div className="flex justify-center mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex justify-center mb-8"
+        >
           {tabs.map((tab) => (
             <button
               key={tab.id}
@@ -36,7 +47,7 @@ const AdminPage = () => {
               {tab.label}
             </button>
           ))}
-        </div>
+        </motion.div>
         {activeTab === "create" && <CreateProductForm />}
         {activeTab === "products" && <ProductsList />}
         {activeTab === "analytics" && <AnalyticsTab />}
