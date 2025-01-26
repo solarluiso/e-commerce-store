@@ -43,8 +43,8 @@ const AdminPage = () => {
                   : "bg-gray-700 text-gray-300 hover:bg-gray-600"
               }`}
             >
-              <tab.icon className="mr-2 h-5 w-5" />
-              {tab.label}
+              <tab.icon className="h-5 w-5 mr-0 sm:mr-2" />
+              <span className="hidden sm:block">{tab.label}</span>
             </button>
           ))}
         </motion.div>
