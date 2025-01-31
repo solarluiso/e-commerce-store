@@ -2,6 +2,8 @@ import { useState } from "react";
 import { PlusCircle, Upload, Loader } from "lucide-react";
 import { motion } from "framer-motion";
 
+import { useProductStore } from "../stores/useProductStore";
+
 const categories = [
   "books",
   "incenses",
@@ -20,11 +22,24 @@ const CreateProductForm = () => {
     image: "",
   });
 
-  const loading = false;
+  const { createProduct, loading } = useProductStore();
 
+  // Handles form submission and creates a new product.
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(newProduct);
+    try {
+      await createProduct(newProduct);
+      // Reset the form fields after creating a product
+      setNewProduct({
+        name: "",
+        description: "",
+        price: "",
+        category: "",
+        image: "",
+      });
+    } catch {
+      console.log("error creating a product");
+    }
   };
 
   // Handles image file selection and converts it to a Base64 string.
