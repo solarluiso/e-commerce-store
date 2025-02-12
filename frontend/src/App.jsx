@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import AdminPage from "./pages/AdminPage";
+import CategoryPage from "./pages/CategoryPage";
 import { useUserStore } from "./stores/useUserStore";
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
               user?.role === "admin" ? <AdminPage /> : <Navigate to="/login" />
             }
           />
+          <Route path="/category/:category" element={<CategoryPage />} />
         </Routes>
       </div>
       <Toaster />
