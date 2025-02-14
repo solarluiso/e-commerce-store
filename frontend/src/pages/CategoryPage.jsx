@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 
+import ProductCard from "../components/ProductCard";
 import { useProductStore } from "../stores/useProductStore";
 
 const CategoryPage = () => {
@@ -39,7 +40,6 @@ const CategoryPage = () => {
           )}
 
           {products?.map((product) => (
-            // TODO: implement ProductCard component
             <ProductCard key={product._id} product={product} />
           ))}
         </motion.div>
