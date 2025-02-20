@@ -11,7 +11,8 @@ import AdminPage from "./pages/AdminPage";
 import CategoryPage from "./pages/CategoryPage";
 import CartPage from "./pages/CartPage";
 import { useUserStore } from "./stores/useUserStore";
-import { get } from "mongoose";
+import { useCartStore } from "./stores/useCartStore";
+
 
 function App() {
   const { user, checkAuth, checkingAuth } = useUserStore();
