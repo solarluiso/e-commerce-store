@@ -18,7 +18,10 @@ export const getFeaturedProducts = async (req, res) => {
     if (featuredProducts) {
       return res.json(JSON.parse(featuredProducts));
     }
+
     // if not in redis, fetch from mongodb
+    // .lean() is gonna return a plain javascript object instead of a mongodb document
+    // which is good for performance
     featuredProducts = await Product.find({ isFeatured: true }).lean(); // Fetch featured products from the database (and convert to plain JS objects)
 
     if (!featuredProducts) {
@@ -39,13 +42,14 @@ export const createProduct = async (req, res) => {
     const { name, description, price, image, category } = req.body; // Extract product details from request body
 
     let cloudinaryResponse = null;
+
     if (image) {
       cloudinaryResponse = await cloudinary.uploader.upload(image, {
         folder: "products",
       });
     }
 
-    const product = new Product({
+    const product = await Product.create({
       name,
       description,
       price,
@@ -76,7 +80,7 @@ export const deleteProduct = async (req, res) => {
         await cloudinary.uploader.destroy(`products/${publicId}`);
         console.log("Image deleted from cloudinary");
       } catch (error) {
-        console.log("Error in deleting image from cloudinary", error.message);
+        console.log("Error deleting image from cloduinary", error);
       }
     }
 
@@ -106,7 +110,8 @@ export const getRecommendedProducts = async (req, res) => {
         },
       },
     ]);
-    res.json({ products });
+
+    res.json(products);
   } catch (error) {
     console.log("Error in getRecommendedProducts controller", error.message);
     res.status(500).json({ message: "Server error", error: error.message });
@@ -114,8 +119,9 @@ export const getRecommendedProducts = async (req, res) => {
 };
 
 export const getProductsByCategory = async (req, res) => {
+  const { category } = req.params;
   try {
-    const products = await Product.find({ category: req.params.category }); // Fetch products by category
+    const products = await Product.find({ category }); // Fetch products by category from the database
     res.json({ products });
   } catch (error) {
     console.log("Error in getProductsByCategory controller", error.message);
@@ -147,6 +153,6 @@ async function updateFeaturedProductsCache() {
     const featuredProducts = await Product.find({ isFeatured: true }).lean();
     await redis.set("featured_products", JSON.stringify(featuredProducts));
   } catch (error) {
-    console.log("Error in updateFeaturedProductsCache", error.message);
+    console.log("Error in update cache function");
   }
 }
