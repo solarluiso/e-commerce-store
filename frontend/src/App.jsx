@@ -13,7 +13,6 @@ import CartPage from "./pages/CartPage";
 import { useUserStore } from "./stores/useUserStore";
 import { useCartStore } from "./stores/useCartStore";
 
-
 function App() {
   const { user, checkAuth, checkingAuth } = useUserStore();
   const { getCartItems } = useCartStore();
@@ -23,8 +22,9 @@ function App() {
   }, [checkAuth]);
 
   useEffect(() => {
+    if (!user) return; // Fetch cart items when user is authenticated
     getCartItems();
-  }, [getCartItems]);
+  }, [getCartItems, user]);
 
   if (checkingAuth) return <LoadingSpinner />;
 
