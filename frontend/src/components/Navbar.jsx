@@ -16,7 +16,7 @@ const Navbar = () => {
             to="/"
             className="text-2xl font-bold text-emerald-400 flex items-center space-x-2"
           >
-            e-commerce
+            Trendspace
           </Link>
           <nav className="flex flex-wrap items-center gap-4">
             <Link
