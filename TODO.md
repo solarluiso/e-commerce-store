@@ -1,0 +1,6 @@
+- Improve SEO on index.html
+- Update products to reflect Mindful Living
+- Fix UI for mobile devices on Shopping Cart
+- Add new component for the homepage
+- Add footer ??
+- Improve Readme, change title and add screenshots
