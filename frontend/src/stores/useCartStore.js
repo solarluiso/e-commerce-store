@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import axios from "../lib/axios";
 import { toast } from "react-hot-toast";
+import { useUserStore } from "./useUserStore"; // Add this import
 
 export const useCartStore = create((set, get) => ({
   cart: [],
@@ -47,6 +48,11 @@ export const useCartStore = create((set, get) => ({
     set({ cart: [], coupon: null, total: 0, subtotal: 0 });
   },
   addToCart: async (product) => {
+    const user = useUserStore.getState().user; // Check user authentication
+    if (!user) {
+      toast.error("Please log in to add items to your cart");
+      return;
+    }
     try {
       await axios.post("/cart", { productId: product._id });
       toast.success("Product added to cart");
