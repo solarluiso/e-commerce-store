@@ -8,17 +8,21 @@ const categories = [
   { href: "/books", name: "Books", imageUrl: "/homepage/books.jpg" },
   { href: "/incenses", name: "Incenses", imageUrl: "/homepage/incenses.jpg" },
   {
-    href: "/headphones",
-    name: "Headphones",
-    imageUrl: "/homepage/headphones.jpg",
+    href: "/journals",
+    name: "Journals",
+    imageUrl: "/homepage/journals.jpg",
   },
   {
-    href: "/potteries",
-    name: "Potteries",
-    imageUrl: "/homepage/potteries.jpg",
+    href: "/candles",
+    name: "Candles",
+    imageUrl: "/homepage/candles.jpg",
   },
-  { href: "/lamps", name: "Lamps", imageUrl: "/homepage/lamps.jpg" },
-  { href: "/cups", name: "Cups", imageUrl: "/homepage/cups.jpg" },
+  { href: "/tea", name: "Herbal Teas", imageUrl: "/homepage/tea.jpg" },
+  {
+    href: "/objects",
+    name: "Sacred Objects",
+    imageUrl: "/homepage/objects.jpg",
+  },
 ];
 
 const HomePage = () => {

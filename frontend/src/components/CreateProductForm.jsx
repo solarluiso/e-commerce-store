@@ -7,10 +7,10 @@ import { useProductStore } from "../stores/useProductStore";
 const categories = [
   "books",
   "incenses",
-  "headphones",
-  "potteries",
-  "lamps",
-  "cups",
+  "journals",
+  "candles",
+  "tea",
+  "objects",
 ];
 
 const CreateProductForm = () => {
