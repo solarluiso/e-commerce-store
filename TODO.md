@@ -1,5 +1,4 @@
 - Update products to reflect Mindful Living
 - Fix UI for mobile devices on Shopping Cart
-- Add new component for the homepage
-- Add footer ??
+- Add hero homepage
 - Improve Readme, change title and add screenshots
