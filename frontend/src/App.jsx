@@ -33,7 +33,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#343541] to-[#141b29] text-white relative overflow-hidden">
-      <div className="relative z-50 pt-20">
+      <div className="relative z-50">
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
