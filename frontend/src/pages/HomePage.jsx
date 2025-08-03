@@ -1,5 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
+import HeroSection from "../components/HeroSection";
 import CategoryItem from "../components/CategoryItem";
 import FeaturedProducts from "../components/FeaturedProducts";
 import { useProductStore } from "../stores/useProductStore";
@@ -25,24 +26,39 @@ const categories = [
   },
 ];
 
+const NAVBAR_HEIGHT = 120; // px, adjust if your navbar is a different height
+
 const HomePage = () => {
   const { fetchFeaturedProducts, products, isLoading } = useProductStore();
+  const categoriesHeaderRef = useRef(null);
 
   useEffect(() => {
     fetchFeaturedProducts();
   }, [fetchFeaturedProducts]);
 
+  const handleScrollToCategories = () => {
+    if (categoriesHeaderRef.current) {
+      const headerTop =
+        categoriesHeaderRef.current.getBoundingClientRect().top +
+        window.scrollY;
+      window.scrollTo({
+        top: headerTop - NAVBAR_HEIGHT,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
+      <HeroSection onExploreClick={handleScrollToCategories} />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="text-center text-5xl sm:text-6xl font-bold text-emerald-400 mb-4">
-          Mindful Living Starts Here
-        </h1>
-        <p className="text-center text-xl text-gray-300 mb-12">
-          Discover the latest trends in lifestyle essentials.
-        </p>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <h2
+          ref={categoriesHeaderRef}
+          className="text-center text-4xl sm:text-5xl font-bold text-emerald-400 mb-10"
+        >
+          Our Categories
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
           {categories.map((category) => (
             <CategoryItem category={category} key={category.name} />
           ))}
