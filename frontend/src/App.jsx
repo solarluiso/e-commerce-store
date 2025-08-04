@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
 import Navbar from "./components/Navbar";
@@ -19,6 +20,8 @@ import { useCartStore } from "./stores/useCartStore";
 function App() {
   const { user, checkAuth, checkingAuth } = useUserStore();
   const { getCartItems } = useCartStore();
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     checkAuth();
@@ -32,9 +35,9 @@ function App() {
   if (checkingAuth) return <LoadingSpinner />;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#343541] to-[#141b29] text-white relative overflow-hidden">
-      <div className="relative z-50">
-        <Navbar />
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#343541] to-[#141b29] text-white">
+      <Navbar />
+      <div className={`flex-1 ${!isHomePage ? "pt-20" : ""}`}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route
@@ -65,8 +68,8 @@ function App() {
             element={user ? <PurchaseCancelPage /> : <Navigate to="/login" />}
           />
         </Routes>
-        <Footer />
       </div>
+      <Footer />
       <Toaster />
     </div>
   );
