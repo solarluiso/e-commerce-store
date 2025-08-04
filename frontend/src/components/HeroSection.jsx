@@ -4,7 +4,10 @@ const HeroSection = ({ onExploreClick }) => (
   <section
     className="relative w-full min-h-screen flex items-center justify-center bg-cover bg-center"
     style={{
-      backgroundImage: "url('/homepage/hero.jpg')",
+      backgroundImage: `
+    radial-gradient(circle at center, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.1) 100%),
+    url('/homepage/hero.jpg')
+  `,
     }}
   >
     <div className="absolute inset-0 bg-black bg-opacity-50" />
