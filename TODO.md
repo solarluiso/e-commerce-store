@@ -1,3 +1,5 @@
-- Update products to reflect Mindful Living
-- Fix UI for mobile devices on Shopping Cart
+- Add animation to hero section
+- Add favicon
+- Scroll up when clicking on logo
+- View pages from top on category pages
 - Improve Readme, change title and add screenshots
