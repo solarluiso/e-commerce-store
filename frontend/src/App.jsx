@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
@@ -31,6 +31,10 @@ function App() {
     if (!user) return; // Fetch cart items when user is authenticated
     getCartItems();
   }, [getCartItems, user]);
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   if (checkingAuth) return <LoadingSpinner />;
 
