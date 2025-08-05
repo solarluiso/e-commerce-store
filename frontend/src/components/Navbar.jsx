@@ -14,6 +14,7 @@ const Navbar = () => {
         <div className="flex flex-wrap justify-between items-center">
           <Link
             to="/"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="text-2xl font-bold text-emerald-400 flex items-center space-x-2"
           >
             Trendspace
