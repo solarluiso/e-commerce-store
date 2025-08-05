@@ -1,5 +1,2 @@
-- Add animation to hero section
 - Add favicon
-- Scroll up when clicking on logo
-- View pages from top on category pages
 - Improve Readme, change title and add screenshots
