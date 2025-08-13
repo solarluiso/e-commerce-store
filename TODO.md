@@ -1,2 +1,1 @@
 - Add favicon
-- Improve Readme, change title and add screenshots

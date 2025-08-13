@@ -1,4 +1,24 @@
-# E-Commerce Platform
+# Trendspace
+
+## Screenshots
+
+### Hero
+
+![Hero Section](screenshots/hero.png)
+
+### Categories
+
+![Categories](screenshots/categories.png)
+
+### Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+### Shopping Cart
+
+![Shopping Cart](screenshots/cart.png)
+
+## Overview
 
 An advanced, full-featured e-commerce platform designed to provide a seamless shopping experience. This project includes robust authentication, MongoDB & Redis integration, and Stripe-powered payments.
 
