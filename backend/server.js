@@ -30,8 +30,14 @@ app.use("/api/analytics", analyticRoutes);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+    // If the request is for a file (has a dot in the last part), skip
+    if (req.path.includes(".")) {
+      res.status(404).end();
+    } else {
+      res.sendFile(path.resolve(__dirname, "../frontend/dist/index.html"));
+    }
   });
 }
 
